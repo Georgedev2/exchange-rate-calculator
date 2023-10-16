@@ -64,8 +64,6 @@
       };
       // update UI
       function updateUIAndRate() {
-        // console.log(e.target.value)
-        // rate.updateRateValue(currentRate[e.target.value][currency.value]);
         rate.updateRateValue(currentRate[exchangeType.value][currency.value]);
         usd.innerHTML = `1 ${currency.value.toUpperCase()} (${currencySymbol(
           currency.value
