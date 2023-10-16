@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+      :root {
+        --pr-border: 1px solid #dadce0;
+        --input-height: 35px;
+        --primary-color: teal;
+        --primary-border-radius: 4px;
+      }
+      * {
+        font-family: 'Nunito', sans-serif;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      form {
+        width: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .input-label {
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      .input-box {
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        border-radius: var(--primary-border-radius);
+        height: var(--input-height);
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .input-box input {
+        border: none;
+        outline: none;
+        width: 100%;
+      }
+      .input-box span {
+        display: inline-block;
+        margin: 0px 5px;
+      }
+      .category{
+        width: 100%;
+        margin-bottom: 20px;
+        height: var(--input-height);
+        /* margin-top: 10px; */
+      }
+      .save {
+        width: 100%;
+        height: var(--input-height);
+        cursor: pointer;
+        outline: none;
+        border: none;
+        background-color: var(--primary-color);
+        border-radius: var(--primary-border-radius);
+        color: white;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <div class="input-And-label">
+        <label for="dollar" class="input-label"> 1 Dollar</label>
+        <div class="input-box">
+          <span>N</span><input type="text" placeholder="naira" />
+        </div>
+        <div>
+          <label for="euro" class="input-label"> 1 Euro</label>
+          <div class="input-box">
+            <span>N</span><input type="text" placeholder="naira" />
+          </div>
+        </div>
+        <div>
+          <label for="pounce" class="input-label"> 1 Pounce</label>
+          <div class="input-box">
+            <span>N</span><input type="text" placeholder="naira" />
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="input-label">Select Exchange Category</label>
+        <select name="" id="" class="category">
+          <option value="bdc">BDC</option>
+          <option value="">Central bank</option>
+          <option value="">Fx</option>
+          <option value="">Western Union</option>
+        </select>
+      </div>
+      <button class="save" id="save">Save</button>
+    </form>
+    <script>
+      const object = {
+        dollar: '',
+        euro: '',
+        pounce: '',
+        date: Date.now(),
+       exchangeCategory:'fx'
+      };
+    </script>
+  </body>
+</html>

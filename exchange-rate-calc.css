@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+:root {
+  --pr-border: 1px solid #dadce0;
+  --input-height: 33px;
+}
+* {
+  font-family: 'Nunito', sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.container {
+  width: 500px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0 16px 70px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rate-type-box {
+  width: 100%;
+}
+.container div:nth-child(2) {
+  margin: 10px 0px;
+}
+#exchangeType {
+  outline: none;
+  border: var(--pr-border);
+  border-radius: 4px;
+  height: var(--input-height);
+  margin: 10px 0px;
+  width: 100%;
+}
+.container input {
+  height: 30px;
+  padding: 5px 10px;
+  outline: none;
+  border: var(--pr-border);
+  border-radius: 4px;
+  height: var(--input-height);
+}
+
+.section-box {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.currency {
+  height: var(--input-height);
+  border: var(--pr-border);
+  margin-right: 10px;
+
+  cursor: pointer;
+}
+.naira {
+  width: 68px;
+  display: inline-flex;
+  align-items: center;
+  height: var(--input-height);
+  padding: 5px;
+  font-size: 13px;
+  margin-right: 10px;
+}
+.naira-box {
+  display: flex;
+  align-items: center;
+}

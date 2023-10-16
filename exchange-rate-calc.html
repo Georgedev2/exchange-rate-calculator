@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange rate Calculator</title>
+    <link rel="stylesheet" href="./exchange-rate-calc.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="rate-type-box">
+        <label for=""> Select exchange category</label> <br />
+        <select name="" id="exchangeType">
+          <option value="cbn">Central Bank of Nigeria</option>
+          <option value="blackMarket">Black market</option>
+          <option value="bureauDeChange">Bureau de change</option>
+        </select>
+      </section>
+
+      <div id="usd"></div>
+
+      <div class="wrapper">
+        <section class="section-box">
+          <!-- <label for=""> Selected currency</label> <br /> -->
+          <select id="currency" class="currency">
+            <option value="usd">USD($)</option>
+            <option value="gbp">GBP(&pound;)</option>
+            <option value="eur">EUR(&euro;)</option>
+          </select>
+          <input type="text" id="fxInput" placeholder="0.00" />
+        </section>
+        <!-- <div></div> -->
+
+        <div class="naira-box">
+          <span class="naira"><span>Naira (N)</span> </span
+          ><input type="text" id="nairaInput" placeholder="0.00" />
+        </div>
+      </div>
+    </div>
+    <script src="./rates.js"></script>
+    <script>
+      /*  
+      IMPLEMENTATION
+      when ever i change currency type, or exchange type or category update  state and UI
+       */
+
+      // constants
+      const USD = 'usd';
+      const GBP = 'gbp';
+      const EUR = 'eur';
+
+      // references
+      const exchangeType = document.querySelector('#exchangeType');
+      const nairaInput = document.querySelector('#nairaInput');
+      const fxInput = document.querySelector('#fxInput');
+      const currency = document.querySelector('#currency');
+
+      // state
+      const rate = {
+        value: '',
+        updateRateValue: function (input) {
+          this.value = input;
+        },
+      };
+      // update UI
+      function updateUIAndRate() {
+        // console.log(e.target.value)
+        // rate.updateRateValue(currentRate[e.target.value][currency.value]);
+        rate.updateRateValue(currentRate[exchangeType.value][currency.value]);
+        usd.innerHTML = `1 ${currency.value.toUpperCase()} (${currencySymbol(
+          currency.value
+        )})= ₦ ${rate.value} (@ ${exchangeType.value} Rate)`;
+      }
+
+      // SOLID Principle DRY principle
+      //HELPERS
+      const currencySymbol = (input) => {
+        switch (input) {
+          case USD:
+            return '$';
+          case EUR:
+            return '€';
+          case GBP:
+            return '£';
+          default:
+            return 'wrong currency';
+        }
+      };
+
+      const addDecimalPoint = (input) => {
+        return input.toFixed(5);
+      };
+      const calculateForeignCurrencyNairaValue = (qtyOfFxToChange, rate) => {
+        return addDecimalPoint(Number(qtyOfFxToChange) * Number(rate));
+      };
+
+      const calculateNairaValueOfForeignCurrency = (
+        qtyOfNairaToChange,
+        rate
+      ) => {
+        return addDecimalPoint(Number(qtyOfNairaToChange) / Number(rate));
+      };
+
+      exchangeType.addEventListener('input', (e) => {
+        // console.log(currentRate[e.target.value]); // the value property hold the selected option value property
+        // DRY THIS CODE
+        // the target propery hold the element where the event originate from
+        updateUIAndRate(); 
+      });
+
+      currency.addEventListener('input', (e) => {
+        // handle change in currency.
+        updateUIAndRate();
+      });
+
+      document.addEventListener('DOMContentLoaded', function (e) {
+        updateUIAndRate();
+      });
+
+      // // Calculate naira on fx input Change
+      fxInput.addEventListener('input', (e) => {
+        nairaInput.value = calculateForeignCurrencyNairaValue(
+          e.target.value,
+          rate.value
+        );
+      });
+
+      // // Calculate FX on naira input Change
+      nairaInput.addEventListener('input', (e) => {
+        fxInput.value = calculateNairaValueOfForeignCurrency(
+          e.target.value,
+          rate.value
+        );
+      });
+    </script>
+  </body>
+</html>
